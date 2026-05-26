@@ -34,7 +34,11 @@ export default function AnalyzerView({
   const [is2FARequired, setIs2FARequired] = useState(false);
   const [connectedUser, setConnectedUser] = useState<any>(() => {
     const saved = localStorage.getItem('tg_analyzer_user');
-    return saved ? JSON.parse(saved) : null;
+    try {
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
   });
   const [authId, setAuthId] = useState<string | null>(null);
   const [smsCode, setSmsCode] = useState('');
