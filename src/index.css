@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-tg-bg: #0D0D0D;
+  --color-tg-card: #141414;
+  --color-tg-accent: #4A90E2;
+  --color-tg-accent-hover: #5C9CE6;
+  --color-tg-bubble-user: #1E1E1E;
+  --color-tg-bubble-ai: #141414;
+  --color-tg-text: #F5F5F5;
+  --color-tg-secondary: #8E8E93;
+  --color-tg-border: #1F1F1F;
+  
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-tg-bg);
+    color: var(--color-tg-text);
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@layer components {
+  .magic-card {
+    @apply relative overflow-hidden rounded-2xl bg-[#0D0D0D] border border-white/5 transition-all duration-300;
+  }
+  .magic-card::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500 pointer-events-none;
+  }
+  .magic-card:hover::before {
+    @apply opacity-100;
+  }
+  .magic-button-primary {
+    @apply relative inline-flex items-center justify-center rounded-xl bg-gradient-to-b from-[#4A90E2] to-[#357ABD] px-4 py-2 text-sm font-medium text-white shadow-[0_1px_2px_rgba(255,255,255,0.3)_inset,0_2px_8px_rgba(74,144,226,0.2)] transition-all duration-200 hover:from-[#5C9CE6] hover:to-[#4A90E2] hover:shadow-[0_1px_2px_rgba(255,255,255,0.4)_inset,0_4px_16px_rgba(74,144,226,0.4)] active:scale-[0.98];
+  }
+  .magic-button-secondary {
+    @apply relative inline-flex items-center justify-center rounded-xl bg-gradient-to-b from-[#1F1F1F] to-[#141414] px-4 py-2 text-sm font-medium text-white shadow-[0_1px_2px_rgba(255,255,255,0.1)_inset,0_2px_4px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-200 hover:from-[#2A2A2A] hover:to-[#1E1E1E] hover:border-white/10 active:scale-[0.98];
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Telegram ripple and active animations */
+.active-tab {
+  color: var(--color-tg-accent);
+}
+
+.telegram-bubble-in {
+  animation: slideInUp 0.18s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Markdown Support Boilerplate */
+.markdown-body {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #FFFFFF;
+}
+
+.markdown-body p {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body strong {
+  color: #48bbf3;
+  font-weight: 600;
+}
+
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.125rem 0.25rem;
+  border-radius: 4px;
+}
+
+.markdown-body pre {
+  background-color: #0f171e;
+  padding: 0.75rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 0.75rem;
+  color: #E2E8F0;
+  display: block;
+}
+
+.markdown-body ul, .markdown-body ol {
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+}
+
+.markdown-body ol {
+  list-style-type: decimal;
+}
+
+.markdown-body li {
+  margin-bottom: 0.25rem;
+}

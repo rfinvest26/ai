@@ -1,0 +1,6 @@
+{
+  "name": "Telegram AI Coach",
+  "description": "AI-powered Telegram Mini App containing chat, custom knowledge manuals, and conversation analyzer for tactical coaching.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
